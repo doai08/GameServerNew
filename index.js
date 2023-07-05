@@ -1,15 +1,15 @@
 const http = require('http');
-const server = http.createServer();
+
 const { Server } = require("socket.io");
 
-
-const io = new Server(server);
-
-
-io.on('connection', (socket) => {
-    console.log('a user connected');
+const server = http.createServer().listen(5555, () => {
+    console.log('listening on *:5555');
 });
 
-server.listen(5555, () => {
-    console.log('listening on *:5555');
+const io = new Server(server);
+io.on('connection',(socket)=>{
+    console.log("connec");
+    socket.on('xinchao',()=>{
+        console.log('xinchao');
+    });
 });
